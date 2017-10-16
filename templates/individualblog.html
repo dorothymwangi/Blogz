@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<head>
+    <style>
+     
+    </style>
+</head>
+    <h1>Individual Blogs</h1>
+    <form method ='get'>
+        <label> Blog title:</label>
+        <span class = "title">{{ blog }}</span>
+
+        <br>
+
+        <label> Blog body:</label>
+        <span class = "body">{{ body }}</span>
+
+        <br>
+        
+    </form>
+
+{% endblock %}
