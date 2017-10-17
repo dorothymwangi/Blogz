@@ -16,11 +16,25 @@ class Blog(db.Model):
     def __init__(self, name, body):
         self.name = name
         self.body = body
-        
+
 @app.route('/blog')
 def blog():
     blogs = Blog.query.all()
-    return render_template('blog.html', title='My blogs', blog=blogs)    
+    blog_id = request.args.get('id')
+    
+    blog_name = request.args.get('name')
+    blog_body = request.args.get('body')
+    
+    #return indv_blog
+
+    #return blog_id
+    #if request.args.get('id'):
+    if blog_id:  
+        indv_blog = Blog.query.filter_by(blog_id)   
+        return render_template('/individualblog.html',blog=indv_blog, blog_name=blog_name, blog_body=blog_body)
+            
+    else:
+        return render_template('blog.html', title='My blogs', blogs=blogs)    
 
 @app.route('/newpost')
 def index():
@@ -52,7 +66,7 @@ def newpost():
 def single():
     blog = request.args.get('blog')
     body = request.args.get('body')
-
+    return render_template ('individualblog.html', blog=blog, body=body)
 
 if __name__ =='__main__':
     app.run()

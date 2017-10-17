@@ -1,23 +1,20 @@
 {% extends "base.html" %}
-
 {% block content %}
-<head>
-    <style>
-     
-    </style>
-</head>
-    <h1>Individual Blogs</h1>
-    <form method ='get'>
-        <label> Blog title:</label>
-        <span class = "title">{{ blog }}</span>
 
-        <br>
+    <head>
+        <style></style>
+    </head>
+        <body>
+            <h1>Individual Blogs</h1>
+            
+            <label> Blog title:
+                <p>blog.name = {{ blog_name }}</p>
+            </label>
+            <br>
 
-        <label> Blog body:</label>
-        <span class = "body">{{ body }}</span>
-
-        <br>
-        
-    </form>
-
+            <label> Blog body:
+                <p>blog.body = {{ blog_body }}</p>
+            </label>
+        </body>
+</html>
 {% endblock %}
