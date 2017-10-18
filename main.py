@@ -19,21 +19,13 @@ class Blog(db.Model):
 
 @app.route('/blog')
 def blog():
-    blogs = Blog.query.all()
-    blog_id = request.args.get('id')
-    
-    blog_name = request.args.get('name')
-    blog_body = request.args.get('body')
-    
-    #return indv_blog
 
-    #return blog_id
-    #if request.args.get('id'):
-    if blog_id:  
-        indv_blog = Blog.query.filter_by(blog_id)   
-        return render_template('/individualblog.html',blog=indv_blog, blog_name=blog_name, blog_body=blog_body)
-            
+    if request.args:
+        blog_id = request.args.get('id')
+        blog = Blog.query.get(blog_id)  
+        return render_template('individualblog.html', blog=blog)            
     else:
+        blogs = Blog.query.all()
         return render_template('blog.html', title='My blogs', blogs=blogs)    
 
 @app.route('/newpost')
@@ -54,10 +46,16 @@ def newpost():
         blog_body_error="Please enter blog content"
 
     if not blog_name_error and not blog_body_error:
+        new_blog_id = None
         new_blog = Blog(blog_name, blog_body)
         db.session.add(new_blog)
         db.session.commit() 
-        return redirect('/blog')
+
+        new_blog_id = request.args.get('id')
+        blog=Blog.query.get(new_blog_id)
+
+        return render_template('individualblog.html', blog=blog)
+        #return redirect('/blog')
     else:
         return render_template('newpost.html',blog=blog_name, body=blog_body, 
            blog_name_error=blog_name_error, blog_body_error=blog_body_error)

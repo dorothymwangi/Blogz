@@ -5,16 +5,8 @@
         <style></style>
     </head>
         <body>
-            <h1>Individual Blogs</h1>
-            
-            <label> Blog title:
-                <p>blog.name = {{ blog_name }}</p>
-            </label>
-            <br>
-
-            <label> Blog body:
-                <p>blog.body = {{ blog_body }}</p>
-            </label>
+            <h1>{{blog.name}}</h1>
+            <p>{{blog.body}}</p>       
         </body>
 </html>
 {% endblock %}
