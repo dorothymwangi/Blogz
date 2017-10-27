@@ -107,16 +107,16 @@ def index():
    
 @app.route('/blog')
 def blog():
-    if request.args:
+    if request.args.get("id"):
         blog_id = request.args.get('id')
-        owner_id = request.args.get('id')
-        #user_id = Blog.query.filter_by(owner_id=session['owner_id']).first()
-        #user_id = owner_id
         blog = Blog.query.get(blog_id) 
-        user = Blog.query.get(owner_id)
-
-        #if Blog.query.get('/blog?id='+str(blog_id)):     
-        return render_template('individualblog.html', blog=blog, user=user)            
+        #user = User.query.filter(id=blog.owner_id).first()
+        return render_template('individualblog.html', blog=blog)
+    elif request.args.get("user"):
+        owner_id = request.args.get('user')
+        user = User.query.filter(id=owner_id).first()
+        blogs=Blog.query.filter_by(owner_id=owner_id).all()
+        return render_template('SingelUser.html',blogs=blogs, user=user)          
     else:
         blogs = Blog.query.all()
         return render_template('blog.html', title='Blogs', blogs=blogs)    

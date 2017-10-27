@@ -1,12 +1,22 @@
 {% extends "base.html" %}
-{% block content %}
 
-    <head>
-        <style></style>
-    </head>
-        <body>
-            <h1>{{blog.title}}</h1>
-            <p>{{blog.body}}</p>       
-        </body>
-</html>
+{% block content %}
+<head>
+    <style>
+    </style>
+</head>
+   
+<h1>Single user blogs</h1>
+
+{%if blogs|length == 0 %}
+<p> No blogs yet</p>
+{% else%}
+    <div class = "userblogs">
+        {% for blog in blogs %}
+        <h1>{{blog.title}}</h1>
+        <p>{{blog.body}}</p> 
+        <p>{{user.username}}</p> 
+        {%endfor%}
+    </div>
+{%endif%}    
 {% endblock %}
