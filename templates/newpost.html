@@ -16,22 +16,22 @@
 
     </style>
 </head>
-    <h1>Build a Blog</h1>
+    <h1>Blogz</h1>
     <form method ='post'>
         <label> New blog title:</label>
-        <input type="text" name='blog' />
-        <span class = "error">{{ blog_name_error }}</span>
+        <input type="text" name="blog"/>
+        <span class = "error">{{ blog_title_error }}</span>
 
         <br>
 
         <label> New blog body:</label>
-        <textarea name='body'></textarea>
+        <textarea name="body"></textarea>
         <span class = "error">{{ blog_body_error }}</span>
         
 
         <br>
 
-        <input type="submit" value='Add newpost' />
+        <input type="submit" value="Add newpost"/>
     </form>
 
 {% endblock %}

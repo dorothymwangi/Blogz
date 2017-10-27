@@ -6,14 +6,14 @@
     </style>
 </head>
    
-<h1>My Blogs</h1>
+<h1>All blog posts</h1>
 
 {%if blogs|length == 0 %}
 <p> No blogs yet</p>
 {% else%}
     <div class = "blogEntry">
         {% for blog in blogs %}
-        <h2><a href = "./blog?id={{blog.id}}">{{blog.name}}</a></h2>
+        <h2><a href = "./blog?id={{blog.id}}">{{blog.title}}</a></h2>
         {%endfor%}
     </div>
 {%endif%}    
